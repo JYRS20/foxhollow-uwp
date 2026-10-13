@@ -92,4 +92,4 @@ Pulsa View y abre **TEXTURAS** en la barra superior. El panel muestra el pack in
 
 ## Idioma del menú
 
-Desde 0.5.8.17, Configuración → Idioma del menú ofrece Español, English, Français, Deutsch e Italiano. El menú cambia inmediatamente; pulsa Guardar y volver para conservar la selección. No exige reiniciar ni cambia el idioma del juego. La opción Idioma del juego continúa separada y depende del disco PAL. Los ajustes anteriores conservan sus valores y usan español para el menú.
+Desde 0.5.8.17, Configuración → Idioma del menú ofrece Español, English, Français, Deutsch e Italiano. El menú cambia inmediatamente; pulsa Guardar y volver para conservar la selección. No exige reiniciar ni cambia el idioma del juego. La opción Idioma del juego continúa separada y depende del disco PAL. Desde 0.5.8.18, el menú usa inglés por defecto cuando no hay una preferencia guardada. Los idiomas guardados se conservan.

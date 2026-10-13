@@ -13,7 +13,7 @@ Foxhollow: eine native Portierung von Star Fox Adventures auf Basis der SFA-Deko
 
 ## Installation
 
-1. Lade **0.5.8.17** unter [Releases](https://github.com/JYRS20/foxhollow-uwp/releases) herunter.
+1. Lade **0.5.8.18** unter [Releases](https://github.com/JYRS20/foxhollow-uwp/releases) herunter.
 2. Installiere das **x64-APPX** über Device Portal und bei Bedarf **VCLibs x64**.
 3. Stelle in Dev Home **App type → Game** ein.
 4. Verbinde einen USB-Datenträger mit deiner **ISO, RVZ oder GCM** und wähle **SPIEL AUSWÄHLEN**, dann **SPIELEN**.
@@ -24,7 +24,7 @@ Unterstützte Discs: USA **GSAE01** und PAL **GSAP01**, Revisionen 0 und 1; Japa
 
 ## Einstellungen und Texturen
 
-Drücke während des Spielens **View**, um die Menüleiste zu öffnen. Verfügbar sind **720p/1080p**, **4:3/16:9**, die PAL-Spielsprache und eine FPS-Anzeige. Unter **Einstellungen → Menüsprache** stehen **Spanisch, Englisch, Französisch, Deutsch und Italienisch** zur Auswahl.
+Drücke während des Spielens **View**, um die Menüleiste zu öffnen. Verfügbar sind **720p/1080p**, **4:3/16:9**, die PAL-Spielsprache und eine FPS-Anzeige. Unter **Einstellungen → Menüsprache** stehen **Spanisch, Englisch, Französisch, Deutsch und Italienisch** zur Auswahl. Das Menü startet standardmäßig auf **Englisch**; gespeicherte Spracheinstellungen bleiben erhalten.
 
 Öffne im Hauptmenü **TEXTUREN** und wähle die **ZIP** des Pakets von USB aus. Während des Spielens kannst du es über **View → Texturen** aktivieren oder deaktivieren.
 

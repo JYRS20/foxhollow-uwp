@@ -1,7 +1,9 @@
-# Foxhollow UWP 0.5.8.17
+# Foxhollow UWP 0.5.8.18
 
-Añade cinco idiomas al menú: español, inglés, francés, alemán e italiano. Selecciónalos en Configuración → Idioma del menú y pulsa Guardar y volver. Se aplica sin reiniciar y se conserva entre sesiones. El idioma de la ROM continúa como una opción independiente.
+The menu now starts in English by default for new installations and older settings without a saved menu language. Saved language preferences are preserved. Spanish, French, German and Italian remain available under Settings → Menu language.
 
-Mantiene la lectura del disco desde USB, la instalación de texturas local, su activación/desactivación desde la barra y la pausa del juego/audio durante la preparación del ZIP. Configura App type → Game y mantén conectada la USB del disco.
+If your installation already saved Spanish, select English and use Save and back once. The game language is a separate setting.
 
-Compilación y firma verificadas. Selector con mando, navegación en los cinco idiomas, guardado y compatibilidad con ajustes antiguos comprobados en Windows, además de regresión de texturas, pausa y USB. Pendiente de confirmar los nuevos idiomas en consola.
+The APPX is signed. No separate .cer file is included. Disc access from USB, texture packs and the existing options are unchanged.
+
+Build, signature, default language, old settings, language persistence and English controller navigation verified locally.

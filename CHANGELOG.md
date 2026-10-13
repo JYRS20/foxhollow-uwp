@@ -2,6 +2,12 @@
 
 La numeración es propia del paquete UWP. El historial de escritorio se conserva en docs/upstream/CHANGELOG.md.
 
+## 0.5.8.18 — 2026-10-13
+
+Inglés como idioma predeterminado del menú al instalar o cargar ajustes antiguos sin idioma de interfaz. Las preferencias guardadas se conservan y siguen disponibles los cinco idiomas. Sin cambios al idioma de la ROM. La distribución conserva la firma del APPX y no incluye un certificado .cer separado.
+
+Compilación y firma verificadas. Pruebas de valor predeterminado, ajustes antiguos, persistencia de los cinco idiomas y navegación en inglés correctas.
+
 ## 0.5.8.17 — 2026-10-13
 
 Menú en español, inglés, francés, alemán e italiano. Selector independiente del idioma de la ROM, cambio inmediato y persistencia al guardar. Traducidos menú principal, barra, ajustes, selector USB, texturas, progreso, mensajes y contador de FPS. Conservados los identificadores de navegación al cambiar textos. Ajustes de versiones anteriores compatibles, con español predeterminado.

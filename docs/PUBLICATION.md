@@ -7,7 +7,7 @@ Esta carpeta es la copia limpia del código. Los discos, partidas, certificados,
 3. Revisa README y créditos antes de publicar. Las capturas son vistas previas del menú.
 4. El workflow de compilación solo se ejecuta manualmente desde Actions y no publica automáticamente.
 
-Los APPX se adjuntan a una **Release**, no al código fuente. Para 0.5.8.17 utiliza la etiqueta v0.5.8.17 y adjunta la distribución preparada por separado: APPX firmado, certificado público correspondiente, VCLibs x64, guía de uso, créditos, licencias y SHA256SUMS.txt.
+Los APPX se adjuntan a una **Release**, no al código fuente. Para 0.5.8.18 utiliza la etiqueta v0.5.8.18 y adjunta la distribución preparada por separado: APPX firmado, certificado público correspondiente, VCLibs x64, guía de uso, créditos, licencias y SHA256SUMS.txt.
 
 Nunca adjuntes PFX, contraseñas, discos o partidas. Los hashes comprueban integridad; no sustituyen la comprobación del editor y su firma. La versión fue seleccionada para publicación tras la confirmación del usuario en Xbox; no se garantiza compatibilidad con todos los packs y discos.
 
@@ -19,8 +19,8 @@ Incluye versión, consola/PC, región/revisión del disco, resolución, pasos pa
 
 ## Archivos de esta publicación
 
-- Código: extrae `foxhollow-uwp-source-0.5.8.17.zip` y sube el contenido de su carpeta `foxhollow-uwp` a la raíz del repositorio. README.md y CMakeLists.txt deben quedar en la raíz, no dentro de otra carpeta.
-- Instalación: adjunta `foxhollow-uwp-0.5.8.17-x64-release.zip` a la Release con etiqueta `v0.5.8.17` y título **Foxhollow UWP 0.5.8.17**.
+- Código: extrae `foxhollow-uwp-source-0.5.8.18.zip` y sube el contenido de su carpeta `foxhollow-uwp` a la raíz del repositorio. README.md y CMakeLists.txt deben quedar en la raíz, no dentro de otra carpeta.
+- Instalación: adjunta `foxhollow-uwp-0.5.8.18-x64-release.zip` a la Release con etiqueta `v0.5.8.18` y título **Foxhollow UWP 0.5.8.18**.
 - Descripción de la Release: utiliza `docs/RELEASE_NOTES.md`.
 
 Por la cantidad de archivos, usa Git o GitHub Desktop para subir el código completo. No subas la carpeta de desarrollo ni los ZIP de instalación como archivos del repositorio.

@@ -13,7 +13,7 @@ Foxhollow: un port nativo de Star Fox Adventures basado en la descompilación SF
 
 ## Instalación
 
-1. Descarga la versión **0.5.8.17** desde [Releases](https://github.com/JYRS20/foxhollow-uwp/releases).
+1. Descarga la versión **0.5.8.18** desde [Releases](https://github.com/JYRS20/foxhollow-uwp/releases).
 2. Instala el **APPX x64** mediante Device Portal y añade **VCLibs x64** si se solicita.
 3. En Dev Home, configura **App type → Game**.
 4. Conecta una USB con tu **ISO, RVZ o GCM**, abre **SELECCIONAR JUEGO** y después **JUGAR**.
@@ -24,7 +24,7 @@ Discos admitidos: USA **GSAE01** y PAL **GSAP01**, revisiones 0 y 1; Japón **GS
 
 ## Configuración y texturas
 
-Pulsa **View** durante la partida para abrir la barra. Incluye ajustes de **720p/1080p**, **4:3/16:9**, idioma PAL y contador de FPS. El menú admite **español, inglés, francés, alemán e italiano**, seleccionables en **Configuración → Idioma del menú**.
+Pulsa **View** durante la partida para abrir la barra. Incluye ajustes de **720p/1080p**, **4:3/16:9**, idioma PAL y contador de FPS. El menú admite **español, inglés, francés, alemán e italiano**, seleccionables en **Configuración → Idioma del menú**. El menú inicia en **inglés** por defecto; se conservan las preferencias de idioma guardadas.
 
 En el menú principal, abre **TEXTURAS** y selecciona el **ZIP** del pack desde la USB. Durante la partida, pulsa **View → Texturas** para activarlo o desactivarlo.
 

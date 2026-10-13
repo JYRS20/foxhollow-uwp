@@ -17,7 +17,7 @@ static int bootstrap(int argc, char** argv) {
     return 1;
   }
   SDL_SetLogOutputFunction(sdl_log, nullptr);
-  fhUwpLog("UWP", "0.5.8.17");
+  fhUwpLog("UWP", "0.5.8.18");
   return aurora_main(argc, argv);
 }
 

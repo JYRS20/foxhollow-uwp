@@ -292,7 +292,7 @@ FhMenuCommand fhMenuDraw(FhMenuModel& model, ImTextureID logo) {
   }
   ImGui::SetCursorPos(ImVec2(left, size.y - 31 * scale));
   ImGui::TextDisabled("%s", fhUiText("A: seleccionar     B: volver     Cruceta / stick: navegar"));
-  const char* version = "0.5.8.17";
+  const char* version = "0.5.8.18";
   ImGui::SetCursorPos(ImVec2(size.x - left - ImGui::CalcTextSize(version).x, size.y - 31 * scale));
   ImGui::TextDisabled(fhUiText("%s"), version);
   ImGui::End();
