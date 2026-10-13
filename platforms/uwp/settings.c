@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 FhUwpSettings fhUwpDefaultSettings(void) {
-  const FhUwpSettings settings = {0, 720, -1, 0, 0};
+  const FhUwpSettings settings = {0, 720, -1, 0, 1};
   return settings;
 }
 

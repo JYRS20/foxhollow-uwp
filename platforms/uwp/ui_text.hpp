@@ -2,8 +2,8 @@
 #include <array>
 #include <string>
 #include <string_view>
-inline int fhUiLanguage = 0;
-inline void fhUiSetLanguage(int value) { fhUiLanguage = value >= 0 && value < 5 ? value : 0; }
+inline int fhUiLanguage = 1;
+inline void fhUiSetLanguage(int value) { fhUiLanguage = value >= 0 && value < 5 ? value : 1; }
 struct FhUiEntry { const char* key; std::array<const char*, 4> translations; };
 inline constexpr FhUiEntry fhUiEntries[] = {
   {"CONFIGURACIÓN", {"SETTINGS", "PARAMÈTRES", "EINSTELLUNGEN", "IMPOSTAZIONI"}},
