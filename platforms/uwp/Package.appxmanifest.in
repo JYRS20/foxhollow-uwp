@@ -2,7 +2,7 @@
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
          xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
          IgnorableNamespaces="uap">
-  <Identity Name="Foxhollow.Personal" Publisher="@FOXHOLLOW_UWP_PUBLISHER@" Version="0.5.8.16" ProcessorArchitecture="x64" />
+  <Identity Name="Foxhollow.Personal" Publisher="@FOXHOLLOW_UWP_PUBLISHER@" Version="0.5.8.17" ProcessorArchitecture="x64" />
   <Properties>
     <DisplayName>Foxhollow</DisplayName>
     <PublisherDisplayName>Foxhollow Personal</PublisherDisplayName>
@@ -12,7 +12,13 @@
     <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.19041.0" MaxVersionTested="10.0.26100.0" />
     <PackageDependency Name="Microsoft.VCLibs.140.00" MinVersion="14.0.33519.0" Publisher="CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US" />
   </Dependencies>
-  <Resources><Resource Language="en-us" /></Resources>
+  <Resources>
+    <Resource Language="es-es" />
+    <Resource Language="en-us" />
+    <Resource Language="fr-fr" />
+    <Resource Language="de-de" />
+    <Resource Language="it-it" />
+  </Resources>
   <Applications>
     <Application Id="App" Executable="foxhollow.exe" EntryPoint="uwp.App">
       <uap:VisualElements DisplayName="Foxhollow" Description="Foxhollow"

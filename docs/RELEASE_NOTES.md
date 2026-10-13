@@ -1,7 +1,7 @@
-# Foxhollow UWP 0.5.8.16
+# Foxhollow UWP 0.5.8.17
 
-Añade TEXTURAS a la barra durante la partida: pulsa View, abre el panel y activa/desactiva el pack instalado sin reiniciar. La selección se guarda. Si no hay pack, instálalo desde TEXTURAS en el menú principal; la barra no importa ZIP.
+Añade cinco idiomas al menú: español, inglés, francés, alemán e italiano. Selecciónalos en Configuración → Idioma del menú y pulsa Guardar y volver. Se aplica sin reiniciar y se conserva entre sesiones. El idioma de la ROM continúa como una opción independiente.
 
-Se conserva la pausa del juego y el audio mientras se prepara el pack, el acceso a carpetas mediante Windows.Storage y la lectura del disco directamente desde USB. Mantén App type → Game y la USB del disco conectada.
+Mantiene la lectura del disco desde USB, la instalación de texturas local, su activación/desactivación desde la barra y la pausa del juego/audio durante la preparación del ZIP. Configura App type → Game y mantén conectada la USB del disco.
 
-Compilación y firma verificadas. Navegación con mando simulado, cambios consecutivos de estado, panel sin pack, opciones de salida y regresión del importador comprobados en Windows. Versión seleccionada para publicación tras la confirmación del usuario en Xbox; no se han probado todos los packs ni todas las zonas del juego. Consulta USAGE.md y TEXTURES.md.
+Compilación y firma verificadas. Selector con mando, navegación en los cinco idiomas, guardado y compatibilidad con ajustes antiguos comprobados en Windows, además de regresión de texturas, pausa y USB. Pendiente de confirmar los nuevos idiomas en consola.

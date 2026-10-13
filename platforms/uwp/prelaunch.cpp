@@ -1,6 +1,7 @@
 #include "prelaunch.h"
 #include "disc_browser.hpp"
 #include "menu_view.hpp"
+#include "ui_text.hpp"
 #include "frame_stats.hpp"
 #include "texture_runtime.hpp"
 #include "storage.h"
@@ -196,6 +197,7 @@ extern "C" int fhUwpPrelaunch(void) {
   browser = std::make_unique<FhDiscBrowser>(fhUwpUserPath());
   browser->refresh();
   model.settings = *fhUwpSettings();
+  fhUiSetLanguage(model.settings.uiLanguage);
   bootLanguage = model.settings.language;
   auto& io = ImGui::GetIO();
   previousFlags = io.ConfigFlags;

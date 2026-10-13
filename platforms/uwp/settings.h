@@ -10,6 +10,7 @@ typedef struct {
   int renderHeight;
   int language;
   int showFps;
+  int uiLanguage;
 } FhUwpSettings;
 
 FhUwpSettings fhUwpDefaultSettings(void);

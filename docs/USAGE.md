@@ -89,3 +89,7 @@ Las copias locales creadas por versiones anteriores se conservan; no se borran a
 ## Texturas durante la partida desde 0.5.8.16
 
 Pulsa View y abre **TEXTURAS** en la barra superior. El panel muestra el pack instalado y su estado; selecciona **ACTIVAR TEXTURAS** o **DESACTIVAR TEXTURAS** para aplicar y guardar el cambio sin reiniciar. Si no hay pack, el panel indica que debes instalarlo desde el menú principal. La búsqueda e importación de ZIP permanecen en el menú principal. B vuelve a la barra y View la cierra.
+
+## Idioma del menú
+
+Desde 0.5.8.17, Configuración → Idioma del menú ofrece Español, English, Français, Deutsch e Italiano. El menú cambia inmediatamente; pulsa Guardar y volver para conservar la selección. No exige reiniciar ni cambia el idioma del juego. La opción Idioma del juego continúa separada y depende del disco PAL. Los ajustes anteriores conservan sus valores y usan español para el menú.

@@ -1,4 +1,5 @@
 #include "menu_view.hpp"
+#include "ui_text.hpp"
 #include <algorithm>
 #include <array>
 #include <cmath>
@@ -13,12 +14,12 @@ void importProgress(const FhMenuModel& model, float width, float scale) {
       static_cast<double>(model.copiedBytes) / model.totalBytes), 0.f, 1.f) : 0.f;
   char label[64];
   std::snprintf(label, sizeof(label), "%d%%", model.verifying ? 100 : std::min(99, static_cast<int>(fraction * 100)));
-  ImGui::TextUnformatted(!model.importPhase.empty() ? model.importPhase.c_str() : model.verifying ? "Verificando el disco..." : "Copiando desde USB...");
+  ImGui::TextUnformatted(fhUiText(!model.importPhase.empty() ? fhUiText(model.importPhase.c_str()) : model.verifying ? "Verificando el disco..." : "Copiando desde USB..."));
   ImGui::PushStyleColor(ImGuiCol_PlotHistogram, ImVec4(1.f, .44f, .06f, 1));
   ImGui::ProgressBar(fraction, ImVec2(width, 30 * scale), label);
   ImGui::PopStyleColor();
   if (model.totalBytes)
-    ImGui::TextDisabled("%.1f / %.1f MB", model.copiedBytes / 1048576.0, model.totalBytes / 1048576.0);
+    ImGui::TextDisabled(fhUiText("%.1f / %.1f MB"), model.copiedBytes / 1048576.0, model.totalBytes / 1048576.0);
 }
 
 void background(ImVec2 size) {
@@ -27,6 +28,7 @@ void background(ImVec2 size) {
 
 bool choice(const char* text, float width, float height, bool disabled = false, bool focus = false, const char* id = nullptr) {
   ImGui::PushID(id ? id : text);
+  text = fhUiText(text);
   ImGui::BeginDisabled(disabled);
   if (focus && !disabled) ImGui::SetKeyboardFocusHere();
   const bool activated = ImGui::Selectable("##choice", false, 0, ImVec2(width, height));
@@ -46,25 +48,34 @@ bool choice(const char* text, float width, float height, bool disabled = false, 
   return activated;
 }
 void settingsControls(FhMenuModel& model, float scale) {
-      ImGui::TextDisabled("GRÁFICOS");
-      ImGui::TextUnformatted("Relación de aspecto");
-      if (model.focus) ImGui::SetKeyboardFocusHere();
-      ImGui::RadioButton("4:3 (original)", &model.settings.widescreen, 0);
-      ImGui::SameLine(300 * scale);
-      ImGui::RadioButton("16:9 (panorámico)", &model.settings.widescreen, 1);
       ImGui::Spacing();
-      ImGui::TextUnformatted("Resolución interna");
-      ImGui::RadioButton("720p", &model.settings.renderHeight, 720);
+      ImGui::Separator();
+      ImGui::TextDisabled("%s", fhUiText("IDIOMA DEL MENÚ"));
+      constexpr std::array interfaceNames{"Español", "English", "Français", "Deutsch", "Italiano"};
+      ImGui::SetNextItemWidth(520 * scale);
+      if (ImGui::Combo("##interface-language", &model.settings.uiLanguage, interfaceNames.data(), 5))
+        fhUiSetLanguage(model.settings.uiLanguage);
+      ImGui::Spacing();
+      ImGui::Separator();
+      ImGui::TextDisabled("%s", fhUiText("GRÁFICOS"));
+      ImGui::TextUnformatted(fhUiText("Relación de aspecto"));
+      if (model.focus) ImGui::SetKeyboardFocusHere();
+      ImGui::RadioButton(fhUiLabel("4:3 (original)").c_str(), &model.settings.widescreen, 0);
       ImGui::SameLine(300 * scale);
-      ImGui::RadioButton("1080p", &model.settings.renderHeight, 1080);
+      ImGui::RadioButton(fhUiLabel("16:9 (panorámico)").c_str(), &model.settings.widescreen, 1);
+      ImGui::Spacing();
+      ImGui::TextUnformatted(fhUiText("Resolución interna"));
+      ImGui::RadioButton(fhUiLabel("720p").c_str(), &model.settings.renderHeight, 720);
+      ImGui::SameLine(300 * scale);
+      ImGui::RadioButton(fhUiLabel("1080p").c_str(), &model.settings.renderHeight, 1080);
       bool showFps = model.settings.showFps != 0;
-      if (ImGui::Checkbox("Contador de FPS", &showFps)) model.settings.showFps = showFps ? 1 : 0;
+      if (ImGui::Checkbox(fhUiLabel("Contador de FPS").c_str(), &showFps)) model.settings.showFps = showFps ? 1 : 0;
       ImGui::Spacing();
       ImGui::Separator();
       ImGui::Spacing();
-      ImGui::TextDisabled("IDIOMA DEL JUEGO");
+      ImGui::TextDisabled("%s", fhUiText("IDIOMA DEL JUEGO"));
       constexpr std::array ids{-1, 0, 1, 2, 3, 5};
-      constexpr std::array names{"Automático", "Inglés", "Francés", "Alemán", "Italiano", "Español"};
+      const std::array names{fhUiText("Automático"), fhUiText("Inglés"), fhUiText("Francés"), fhUiText("Alemán"), fhUiText("Italiano"), fhUiText("Español")};
       int selected = 0;
       for (int i = 0; i < static_cast<int>(ids.size()); ++i) if (model.settings.language == ids[i]) selected = i;
       ImGui::BeginDisabled(!model.pal);
@@ -72,44 +83,45 @@ void settingsControls(FhMenuModel& model, float scale) {
       if (ImGui::Combo("##language", &selected, names.data(), static_cast<int>(names.size())))
         model.settings.language = ids[selected];
       ImGui::EndDisabled();
-      if (!model.pal) ImGui::TextDisabled("Selecciona primero un disco PAL.");
+      if (!model.pal) ImGui::TextDisabled("%s", fhUiText("Selecciona primero un disco PAL."));
+
 }
 void fileControls(FhMenuModel& model, float scale, FhMenuCommand& command) {
       if (model.textureMode && !model.importing) {
-        ImGui::TextWrapped("%s", model.textureCount ? model.textureName.c_str() : "No hay un pack instalado.");
+        ImGui::TextWrapped(fhUiText("%s"), model.textureCount ? model.textureName.c_str() : fhUiText("No hay un pack instalado."));
         if (model.textureCount) {
-          ImGui::TextDisabled("%u texturas / %u omitidas", model.textureCount, model.textureSkipped);
+          ImGui::TextDisabled(fhUiText("%u texturas / %u omitidas"), model.textureCount, model.textureSkipped);
           if (choice(model.texturesEnabled ? "DESACTIVAR TEXTURAS" : "ACTIVAR TEXTURAS", 480 * scale, 40 * scale, model.busy, false, "texture-toggle"))
             command.action = FhMenuAction::ToggleTextures;
         }
-      } else if (model.ready && !model.textureMode) ImGui::TextWrapped("%s", model.disc.c_str());
+      } else if (model.ready && !model.textureMode) ImGui::TextWrapped(fhUiText("%s"), model.disc.c_str());
       if (!model.busy && model.error.empty() && model.totalBytes && model.copiedBytes == model.totalBytes)
-        ImGui::TextColored(ImVec4(.5f, .82f, .64f, 1.f), model.textureMode ? "Pack importado correctamente." : "Importacion completada. Disco listo.");
+        ImGui::TextColored(ImVec4(.5f, .82f, .64f, 1.f), "%s", fhUiText(model.textureMode ? "Pack importado correctamente." : "Importacion completada. Disco listo."));
       ImGui::SetWindowFontScale(1.35f / 2.1f);
-      ImGui::TextWrapped("%s", model.location.c_str());
+      ImGui::TextWrapped(fhUiText("%s"), fhUiText(model.location.c_str()));
       ImGui::SetWindowFontScale(1.65f / 2.1f);
       if (model.importing) {
-        ImGui::TextWrapped("%s", model.importName.c_str());
+        ImGui::TextWrapped(fhUiText("%s"), model.importName.c_str());
         importProgress(model, 620 * scale, scale);
-        if (model.textureMode) ImGui::TextDisabled("Juego y audio pausados durante la preparacion.");
-        ImGui::TextWrapped("No retires la USB hasta finalizar.");
+        if (model.textureMode) ImGui::TextDisabled("%s", fhUiText("Juego y audio pausados durante la preparacion."));
+        ImGui::TextWrapped("%s", fhUiText("No retires la USB hasta finalizar."));
         if (choice("Cancelar importacion", 480 * scale, 48 * scale)) command.action = FhMenuAction::Cancel;
       } else {
         ImGui::BeginDisabled(model.busy);
         if (model.canGoBack) {
-          if (ImGui::Button("Subir")) command.action = FhMenuAction::Back;
+          if (ImGui::Button(fhUiLabel("Subir").c_str())) command.action = FhMenuAction::Back;
           ImGui::SameLine();
         }
         if (model.focus) ImGui::SetKeyboardFocusHere();
-        if (ImGui::Button("Actualizar")) command.action = FhMenuAction::Refresh;
+        if (ImGui::Button(fhUiLabel("Actualizar").c_str())) command.action = FhMenuAction::Refresh;
         ImGui::BeginChild("Files", ImVec2(0, 0), ImGuiChildFlags_NavFlattened);
         ImGui::SetWindowFontScale(1.f);
         if (model.files.empty() && !model.busy)
-          ImGui::TextWrapped(model.canGoBack ? model.textureMode ? "No hay packs ZIP en esta carpeta." : "No hay discos ISO, RVZ o GCM en esta carpeta."
-              : "No se detectaron dispositivos USB. Conecta la USB y pulsa Actualizar.");
+          ImGui::TextWrapped("%s", fhUiText(model.canGoBack ? model.textureMode ? "No hay packs ZIP en esta carpeta." : "No hay discos ISO, RVZ o GCM en esta carpeta."
+              : "No se detectaron dispositivos USB. Conecta la USB y pulsa Actualizar."));
         for (int i = 0; i < static_cast<int>(model.files.size()); ++i) {
           ImGui::PushID(i);
-          const auto label = (model.files[i].folder ? "[Carpeta] " : model.textureMode ? "[ZIP] " : "[Disco] ") + model.files[i].name;
+          const auto label = (model.files[i].folder ? fhUiText("[Carpeta] ") : model.textureMode ? "[ZIP] " : fhUiText("[Disco] ")) + model.files[i].name;
           if (ImGui::Selectable(label.c_str(), false, 0, ImVec2(0, 44 * scale))) command = {FhMenuAction::Open, i};
           ImGui::PopID();
         }
@@ -155,19 +167,19 @@ FhMenuCommand gameToolbar(FhMenuModel& model) {
     ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(.02f, .025f, .03f, .94f));
     ImGui::Begin("FoxhollowPanel", nullptr, flags);
     ImGui::SetWindowFontScale(1.7f * scale * fontUnit);
-    ImGui::TextUnformatted(model.page == 1 ? "CONFIGURACIÓN" : model.page == 5 ? "TEXTURAS" : "SALIR");
+    ImGui::TextUnformatted(fhUiText(model.page == 1 ? "CONFIGURACIÓN" : model.page == 5 ? "TEXTURAS" : "SALIR"));
     ImGui::Separator();
     ImGui::BeginChild("Content", ImVec2(0, -104 * scale), ImGuiChildFlags_NavFlattened);
     ImGui::SetWindowFontScale(1.f);
     if (model.page == 1) settingsControls(model, scale);
     else if (model.page == 5) {
-      ImGui::TextWrapped("%s", model.textureCount ? model.textureName.c_str() : "No hay un pack instalado.");
+      ImGui::TextWrapped(fhUiText("%s"), model.textureCount ? model.textureName.c_str() : fhUiText("No hay un pack instalado."));
       if (model.textureCount) {
-        ImGui::TextDisabled("%u texturas / %u omitidas", model.textureCount, model.textureSkipped);
-        ImGui::TextUnformatted(model.texturesEnabled ? "Estado: activadas" : "Estado: desactivadas");
+        ImGui::TextDisabled(fhUiText("%u texturas / %u omitidas"), model.textureCount, model.textureSkipped);
+        ImGui::TextUnformatted(fhUiText(model.texturesEnabled ? "Estado: activadas" : "Estado: desactivadas"));
         if (choice(model.texturesEnabled ? "DESACTIVAR TEXTURAS" : "ACTIVAR TEXTURAS",
             480 * scale, 44 * scale, model.busy, model.focus, "texture-toggle")) command.action = FhMenuAction::ToggleTextures;
-      } else ImGui::TextWrapped("Instala el ZIP desde TEXTURAS en el menu principal.");
+      } else ImGui::TextWrapped("%s", fhUiText("Instala el ZIP desde TEXTURAS en el menu principal."));
     }
     else {
       if (choice("REINICIAR", 480 * scale, 44 * scale, model.busy, model.focus))
@@ -178,15 +190,15 @@ FhMenuCommand gameToolbar(FhMenuModel& model) {
     ImGui::EndChild();
     if (choice(model.page == 1 ? "GUARDAR Y VOLVER" : "VOLVER", 480 * scale, 44 * scale, model.busy))
       command.action = model.page == 1 ? FhMenuAction::Save : FhMenuAction::Home;
-    ImGui::TextDisabled("B: volver    View: cerrar    A: seleccionar");
+    ImGui::TextDisabled("%s", fhUiText("B: volver    View: cerrar    A: seleccionar"));
     ImGui::End();
     ImGui::PopStyleColor();
   } else if (model.restart) {
     ImGui::GetForegroundDrawList()->AddText(ImVec2(24 * scale, 68 * scale), orange,
-        "Cambios pendientes: reinicia para aplicarlos.");
+        fhUiText("Cambios pendientes: reinicia para aplicarlos."));
   }
   if (!model.error.empty())
-    ImGui::GetForegroundDrawList()->AddText(ImVec2(24 * scale, size.y - 30 * scale), orange, model.error.c_str());
+    ImGui::GetForegroundDrawList()->AddText(ImVec2(24 * scale, size.y - 30 * scale), orange, fhUiText(model.error.c_str()));
   ImGui::PopStyleColor(8);
   ImGui::PopStyleVar(2);
   model.focus = false;
@@ -196,6 +208,7 @@ FhMenuCommand gameToolbar(FhMenuModel& model) {
 }
 
 FhMenuCommand fhMenuDraw(FhMenuModel& model, ImTextureID logo) {
+  fhUiSetLanguage(model.settings.uiLanguage);
   ImGui::GetIO().ConfigNavCursorVisibleAlways = true;
   if (model.inGame) return gameToolbar(model);
   FhMenuCommand command;
@@ -229,7 +242,7 @@ FhMenuCommand fhMenuDraw(FhMenuModel& model, ImTextureID logo) {
     const float width = (model.page == 0 ? 608.f : 456.f) * scale;
     ImGui::Image(logo, ImVec2(width, width * 112.f / 632.f));
   } else {
-    ImGui::TextUnformatted("FOXHOLLOW");
+    ImGui::TextUnformatted(fhUiText("FOXHOLLOW"));
   }
   if (model.page == 0) {
     ImGui::SetCursorPos(ImVec2(left, 250 * scale));
@@ -250,12 +263,12 @@ FhMenuCommand fhMenuDraw(FhMenuModel& model, ImTextureID logo) {
     const auto position = ImGui::GetCursorScreenPos();
     ImGui::GetWindowDrawList()->AddCircleFilled(ImVec2(position.x - 14 * scale, position.y + 9 * scale),
         4 * scale, model.ready ? IM_COL32(128, 208, 163, 255) : orange);
-    ImGui::TextUnformatted(status);
+    ImGui::TextUnformatted(fhUiText(status));
     ImGui::SetCursorPosX(left + 22 * scale);
-    ImGui::TextDisabled("GameCube  /  %s", model.ready ? model.region.c_str() : "USB");
+    ImGui::TextDisabled(fhUiText("GameCube  /  %s"), model.ready ? model.region.c_str() : "USB");
   } else {
     ImGui::SetCursorPos(ImVec2(left, 192 * scale));
-    ImGui::TextUnformatted(model.page == 1 ? "CONFIGURACIÓN" : model.page == 4 ? "TEXTURAS" : "SELECCIONAR JUEGO");
+    ImGui::TextUnformatted(fhUiText(model.page == 1 ? "CONFIGURACIÓN" : model.page == 4 ? "TEXTURAS" : "SELECCIONAR JUEGO"));
     ImGui::SetCursorPos(ImVec2(left, 240 * scale));
     ImGui::BeginChild("Panel", ImVec2(std::min(940.f * scale, size.x - 2 * left), size.y - 340 * scale),
         ImGuiChildFlags_NavFlattened, ImGuiWindowFlags_NoSavedSettings);
@@ -274,14 +287,14 @@ FhMenuCommand fhMenuDraw(FhMenuModel& model, ImTextureID logo) {
   if (!model.error.empty()) {
     ImGui::SetCursorPos(ImVec2(size.x * .55f, size.y * .74f));
     ImGui::PushTextWrapPos(size.x - left);
-    ImGui::TextColored(ImVec4(1, .6f, .3f, 1), "%s", model.error.c_str());
+    ImGui::TextColored(ImVec4(1, .6f, .3f, 1), "%s", fhUiText(model.error.c_str()));
     ImGui::PopTextWrapPos();
   }
   ImGui::SetCursorPos(ImVec2(left, size.y - 31 * scale));
-  ImGui::TextDisabled("A: seleccionar     B: volver     Cruceta / stick: navegar");
-  const char* version = "0.5.8.16";
+  ImGui::TextDisabled("%s", fhUiText("A: seleccionar     B: volver     Cruceta / stick: navegar"));
+  const char* version = "0.5.8.17";
   ImGui::SetCursorPos(ImVec2(size.x - left - ImGui::CalcTextSize(version).x, size.y - 31 * scale));
-  ImGui::TextDisabled("%s", version);
+  ImGui::TextDisabled(fhUiText("%s"), version);
   ImGui::End();
   ImGui::PopStyleColor(8);
   ImGui::PopStyleVar(3);
@@ -301,12 +314,12 @@ void fhMenuDrawPerformance(double fps, double averageMs, double peakMs, bool too
   char lines[3][64];
   if (fps > 0) {
     std::snprintf(lines[0], sizeof(lines[0]), "FPS: %.1f", fps);
-    std::snprintf(lines[1], sizeof(lines[1]), "Fotograma: %.1f ms", averageMs);
-    std::snprintf(lines[2], sizeof(lines[2]), "Pico: %.1f ms", peakMs);
+    std::snprintf(lines[1], sizeof(lines[1]), fhUiText("Fotograma: %.1f ms"), averageMs);
+    std::snprintf(lines[2], sizeof(lines[2]), fhUiText("Pico: %.1f ms"), peakMs);
   } else {
     std::snprintf(lines[0], sizeof(lines[0]), "FPS: --");
-    std::snprintf(lines[1], sizeof(lines[1]), "Fotograma: -- ms");
-    std::snprintf(lines[2], sizeof(lines[2]), "Pico: -- ms");
+    std::snprintf(lines[1], sizeof(lines[1]), "%s", fhUiText("Fotograma: -- ms"));
+    std::snprintf(lines[2], sizeof(lines[2]), "%s", fhUiText("Pico: -- ms"));
   }
   for (int i = 0; i < 3; ++i)
     draw->AddText(ImGui::GetFont(), 22 * scale,

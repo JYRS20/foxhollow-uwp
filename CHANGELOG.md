@@ -2,6 +2,12 @@
 
 La numeración es propia del paquete UWP. El historial de escritorio se conserva en docs/upstream/CHANGELOG.md.
 
+## 0.5.8.17 — 2026-10-13
+
+Menú en español, inglés, francés, alemán e italiano. Selector independiente del idioma de la ROM, cambio inmediato y persistencia al guardar. Traducidos menú principal, barra, ajustes, selector USB, texturas, progreso, mensajes y contador de FPS. Conservados los identificadores de navegación al cambiar textos. Ajustes de versiones anteriores compatibles, con español predeterminado.
+
+Selector probado con mando simulado, navegación en los cinco idiomas, persistencia y valores inválidos, vistas a 720p y 1080p. Regresión de importación y cancelación de texturas, pausa y lectura USB correcta. Compilación y firma verificadas; falta confirmar los nuevos idiomas en consola.
+
 ## 0.5.8.16 — 2026-10-13
 
 TEXTURAS en la barra durante la partida. Panel con nombre del pack, recuentos, estado y botón para activar/desactivar sin reiniciar, con selección persistente. Importación de ZIP reservada al menú principal. El botón conserva el foco del mando al cambiar de estado.
