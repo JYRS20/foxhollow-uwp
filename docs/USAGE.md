@@ -1,33 +1,18 @@
 # Instalación y uso
 
-## Xbox Series X|S
+## UWP
 
-1. Activa Developer Mode y abre Xbox Device Portal desde el PC.
+1. Activa Developer Mode y abre Device Portal desde el PC.
 2. Instala el APPX x64 de Foxhollow. Si se solicitan dependencias, proporciona `Microsoft.VCLibs.x64.14.00.appx` de la distribución.
 3. Cierra Foxhollow. En Dev Home selecciónalo, pulsa **View → View details** y configura **App type → Game**.
-4. Abre Foxhollow y conecta una USB reconocida por Xbox que contenga tu ISO, RVZ o GCM.
+4. Abre Foxhollow y conecta una USB reconocida por la consola que contenga tu ISO, RVZ o GCM.
 5. En **SELECCIONAR JUEGO**, entra en la unidad y selecciona el archivo.
-6. Espera la comprobación del disco. No se copia al almacenamiento de Xbox.
+6. Espera la comprobación del disco. No se copia al almacenamiento local.
 7. Selecciona **JUGAR**. Mantén la USB conectada durante toda la partida.
 
 El juego puede inicializarse detrás del menú cuando hay un disco válido. El fondo permanece negro hasta que exista imagen visible del juego. Cancelar la selección conserva el disco anterior. Se recuerda la ruta para el siguiente inicio; si desconectas la USB o cambia su ruta, debes volver a seleccionarlo.
 
 Para recursos UWP y Game mode: [Microsoft](https://learn.microsoft.com/en-us/previous-versions/windows/uwp/xbox-apps/system-resource-allocation) y [guía técnica de DirectX](https://walbourn.github.io/directx-and-uwp-on-xbox-one/).
-
-## Windows
-
-Instala el mismo APPX para probar el menú UWP. El ejecutable de escritorio del proyecto original utiliza otro flujo.
-
-Si aparece **0x800B010A**, Windows no confía en el certificado del editor. Para un paquete de origen verificado:
-
-1. Abre el certificado público **.cer** correspondiente al APPX.
-2. Selecciona **Instalar certificado → Equipo local**.
-3. Elige **Colocar todos los certificados en el siguiente almacén → Personas de confianza**.
-4. Finaliza y vuelve a instalar el APPX.
-
-Requiere administrador y permite confiar en los paquetes firmados con ese certificado. No necesitas el PFX. Si se solicita VCLibs, instala la dependencia x64 incluida.
-
-Referencia: [Microsoft, certificados de firma](https://learn.microsoft.com/windows/msix/package/create-certificate-package-signing).
 
 ## Controles del menú
 
@@ -37,8 +22,6 @@ Referencia: [Microsoft, certificados de firma](https://learn.microsoft.com/windo
 | A | Seleccionar |
 | B | Volver |
 | View durante el juego | Abrir/cerrar la barra durante la partida |
-| F1 en Windows | Abrir/cerrar la barra durante la partida |
-| Flechas, Enter y Escape | Navegar, seleccionar y volver |
 
 ## Ajustes
 
@@ -48,13 +31,12 @@ Usa **GUARDAR Y VOLVER** para conservar los ajustes. Cambiar el disco o idioma p
 
 ## Partidas y almacenamiento
 
-Abre la aplicación al menos una vez para crear sus carpetas. En Device Portal busca `LocalState/Foxhollow/` dentro de la aplicación. En Windows la ruta habitual es `%LOCALAPPDATA%/Packages/<familia del paquete>/LocalState/Foxhollow/`; la familia depende del certificado.
+Abre la aplicación al menos una vez para crear sus carpetas. En Device Portal busca `LocalState/Foxhollow/` dentro de la aplicación.
 
 | Ruta relativa | Función |
 |---|---|
 | `disc-path.txt` | Ruta del disco USB seleccionado |
 | `disc.iso` | Copia local de versiones anteriores, conservada por compatibilidad |
-
 | `settings.ini` | Ajustes |
 | `foxhollow.log` | Registro acumulado |
 | `cache/` | Caché gráfica |
@@ -66,12 +48,11 @@ Copia la tarjeta de memoria con el juego cerrado antes de desinstalar o cambiar 
 
 - **E_OUTOFMEMORY / 0x8007000E:** comprueba App type → Game, cierra otras aplicaciones y prueba a 720p. Si continúa, adjunta el log del intento afectado.
 - **0x800B0100:** paquete sin firma; instala un APPX firmado.
-- **0x800B010A:** certificado no confiable; consulta los pasos para Windows.
-- **USB ausente:** comprueba que Xbox reconozca la unidad y pulsa Actualizar.
+- **USB ausente:** comprueba que la consola reconozca la unidad y pulsa Actualizar.
 - **Disco rechazado:** revisa ID y revisión en el README; solo admite Star Fox Adventures.
 - **initial_pipeline_cache.db ausente:** ese mensaje por sí solo no demuestra un fallo; la caché puede generarse al jugar.
 
-Al informar de un error, indica versión, consola/PC, región y revisión del disco, resolución y pasos para reproducir. No adjuntes discos, partidas ni claves privadas.
+Al informar de un error, indica versión, consola, región y revisión del disco, resolución y pasos para reproducir. No adjuntes discos, partidas ni claves privadas.
 
 ## Comprobar el rendimiento
 
@@ -85,7 +66,7 @@ Prueba la misma zona a 720p y 1080p, con el menú cerrado, y compara FPS y picos
 
 ## Menú de inicio y barra durante el juego
 
-El menú principal aparece al abrir la aplicación y se abandona al seleccionar **JUGAR**. Durante la partida, **View** (o **F1** en Windows) abre y cierra la barra superior. El botón central Xbox conserva su función de sistema; la aplicación utiliza View.
+El menú principal aparece al abrir la aplicación y se abandona al seleccionar **JUGAR**. Durante la partida, **View** abre y cierra la barra superior. El botón central del mando conserva su función de sistema; la aplicación utiliza View.
 
 La barra ofrece Configuración y Salir, además de una X para cerrar. Los ajustes se muestran en un panel sobre el juego. **B** vuelve desde el panel a la barra; desde la barra permite continuar la partida. Si hay una importación de texturas en curso, usa Cancelar importación antes de cerrar el menú.
 
@@ -103,8 +84,8 @@ En el menú principal, abre **TEXTURAS** y selecciona un ZIP desde la USB. Esper
 
 Seleccionar un ISO, RVZ o GCM verifica su cabecera y región/revisión y guarda su ruta; no copia el disco ni realiza una comprobación completa de su hash. El motor lee el archivo original desde USB. La velocidad y estabilidad de esa unidad pueden afectar a las cargas. Mantén la unidad conectada mientras juegas.
 
-Las copias locales creadas por versiones anteriores se conservan; no se borran automáticamente. Al seleccionar un juego desde USB, la ruta elegida tiene prioridad. Las partidas, ajustes y texturas continúan guardándose en Xbox. La importación de ZIP de texturas conserva su funcionamiento.
+Las copias locales creadas por versiones anteriores se conservan; no se borran automáticamente. Al seleccionar un juego desde USB, la ruta elegida tiene prioridad. Las partidas, ajustes y texturas continúan guardándose en el almacenamiento local. La importación de ZIP de texturas conserva su funcionamiento.
 
 ## Texturas durante la partida desde 0.5.8.16
 
-Pulsa View/F1 y abre **TEXTURAS** en la barra superior. El panel muestra el pack instalado y su estado; selecciona **ACTIVAR TEXTURAS** o **DESACTIVAR TEXTURAS** para aplicar y guardar el cambio sin reiniciar. Si no hay pack, el panel indica que debes instalarlo desde el menú principal. La búsqueda e importación de ZIP permanecen en el menú principal. B vuelve a la barra y View la cierra.
+Pulsa View y abre **TEXTURAS** en la barra superior. El panel muestra el pack instalado y su estado; selecciona **ACTIVAR TEXTURAS** o **DESACTIVAR TEXTURAS** para aplicar y guardar el cambio sin reiniciar. Si no hay pack, el panel indica que debes instalarlo desde el menú principal. La búsqueda e importación de ZIP permanecen en el menú principal. B vuelve a la barra y View la cierra.

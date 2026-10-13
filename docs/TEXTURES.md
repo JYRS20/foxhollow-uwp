@@ -51,6 +51,6 @@ La pausa comienza al seleccionar el ZIP, no al navegar por las carpetas. Al fina
 
 ## Activar o desactivar mientras juegas
 
-En la barra View/F1, abre TEXTURAS y selecciona el botón de activar/desactivar el pack instalado. Se guarda la selección y el motor actualiza los reemplazos sin reiniciar. El panel no permite importar otro ZIP durante la partida.
+En la barra View, abre TEXTURAS y selecciona el botón de activar/desactivar el pack instalado. Se guarda la selección y el motor actualiza los reemplazos sin reiniciar. El panel no permite importar otro ZIP durante la partida.
 
 ![Vista previa del panel de texturas](images/toolbar-textures.png)
