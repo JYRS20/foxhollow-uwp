@@ -1,0 +1,13 @@
+{
+  "foxhollow": {"repository": "JackPriceBurns/foxhollow", "commit": "b6145f7b5accab19c8f226c696d4a4af5a165362"},
+  "aurora": {"repository": "JackPriceBurns/aurora", "commit": "3093ee657d70a8b33125a32198e2149a552558de", "tree": "6cbafaed06aa93281c9434c947f4f08c181673a8"},
+  "reference": {
+    "dusklight": {"repository": "XboxEmulationHub/dusklight-uwp", "branch": "uwp-compat", "commit": "48d193dfebe4b20b4984af1d27d0e99f6b6722a7"},
+    "aurora": {"repository": "SternXD/aurora", "commit": "78dd4ddb3282ef0e8c4b0076e374316d3ad7b199"},
+    "aurora_uwp_patch": {"repository": "XboxEmulationHub/aurora", "commit": "efa2593b0f9082b4bcf2e856f5ed01a0040d556c"},
+    "sdl3": {"repository": "XboxEmulationHub/SDL3-uwp", "branch": "uwp-3.4.8", "commit": "9dced4696141e9fac0b81fe267509707d60d7c91"},
+    "dawn": {"repository": "XboxEmulationHub/dawn-uwp", "commit": "a369a9cf6b3ceaea25c34d634d54e2af6f44a8b4"}
+  },
+  "uwp_depot": {"repository": "SternXD/uwp-dep", "commit": "ae39aa004ae127bd00f8262d28b401f8e4ed8728", "sdl3_headers": "3.4.8", "dawn_source_commit": null, "nod_source_commit": null},
+  "jpeg": {"repository": "libjpeg-turbo/libjpeg-turbo", "tag": "3.1.0", "sha256": "35fec2e1ddfb05ecf6d93e50bc57c1e54bc81c16d611ddf6eff73fff266d8285"}
+}

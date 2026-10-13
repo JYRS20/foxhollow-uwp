@@ -1,0 +1,25 @@
+name: Build UWP
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: windows-2022
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install LLVM 20
+        shell: pwsh
+        run: |
+          choco install llvm --version=20.1.8 --allow-downgrade --force -y --no-progress
+          if ($LASTEXITCODE -ne 0) { throw 'LLVM' }
+          'C:\Program Files\LLVM\bin' | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+      - name: Build unsigned APPX
+        shell: pwsh
+        run: ./platforms/uwp/Build.ps1 -Mode Game -Package -BuildJobs 4
+      - uses: actions/upload-artifact@v4
+        with:
+          name: foxhollow-uwp-x64-unsigned
+          path: build-game-ninja/foxhollow-Release-x64.appx
+          if-no-files-found: error

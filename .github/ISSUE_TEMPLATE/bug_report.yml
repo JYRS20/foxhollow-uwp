@@ -1,0 +1,26 @@
+name: Informe de error
+description: Informa de un fallo de Foxhollow UWP.
+body:
+  - type: input
+    id: version
+    attributes:
+      label: Versión de Foxhollow UWP
+    validations:
+      required: true
+  - type: input
+    id: device
+    attributes:
+      label: Consola o PC, región/revisión del disco y resolución
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Pasos y resultado esperado/obtenido
+    validations:
+      required: true
+  - type: textarea
+    id: log
+    attributes:
+      label: Error y registro del intento afectado
+      description: No adjuntes juegos, partidas ni claves privadas.
