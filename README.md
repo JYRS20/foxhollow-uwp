@@ -2,31 +2,32 @@
   <img src="platforms/uwp/Assets/FoxhollowLogo.png" alt="Foxhollow" width="640">
 </div>
 
+[English](README.md) · [Español](README.es.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Italiano](README.it.md)
+
 # Foxhollow UWP
 
 Foxhollow: a native port of Star Fox Adventures built on the SFA decompilation and Aurora.
 
 > [!IMPORTANT]
-> Necesitas tu propia copia del juego. No se incluyen discos, partidas ni packs de texturas.
+> You must provide your own copy of the game. Discs, saves and texture packs are not included.
 
-## Instalación
+## Installation
 
-1. Descarga la versión **0.5.8.17** desde [Releases](https://github.com/JYRS20/foxhollow-uwp/releases).
-2. Instala el **APPX x64** mediante Device Portal y añade **VCLibs x64** si se solicita.
-3. En Dev Home, configura **App type → Game**.
-4. Conecta una USB con tu **ISO, RVZ o GCM**, abre **SELECCIONAR JUEGO** y después **JUGAR**.
+1. Download **0.5.8.17** from [Releases](https://github.com/JYRS20/foxhollow-uwp/releases).
+2. Install the **x64 APPX** through Device Portal and add **x64 VCLibs** if requested.
+3. In Dev Home, set **App type → Game**.
+4. Connect a USB drive with your **ISO, RVZ or GCM**, select **SELECT GAME**, then **PLAY**.
 
-El disco se lee directamente desde USB: **mantén la unidad conectada mientras juegas**.
+The disc is read directly from USB: **keep the drive connected while playing**.
 
-Discos admitidos: USA **GSAE01** y PAL **GSAP01**, revisiones 0 y 1; Japón **GSAJ01**, revisión 0.
+Supported discs: USA **GSAE01** and PAL **GSAP01**, revisions 0 and 1; Japan **GSAJ01**, revision 0.
 
-## Configuración y texturas
+## Settings and textures
 
-Pulsa **View** durante la partida para abrir la barra. Incluye ajustes de **720p/1080p**, **4:3/16:9**, idioma PAL y contador de FPS. El menú admite **español, inglés, francés, alemán e italiano**, seleccionables en **Configuración → Idioma del menú**.
+Press **View** while playing to open the menu bar. Settings include **720p/1080p**, **4:3/16:9**, PAL game language and an FPS counter. Choose **Spanish, English, French, German or Italian** under **Settings → Menu language**.
 
-En el menú principal, abre **TEXTURAS** y selecciona el **ZIP** del pack desde la USB. Durante la partida, pulsa **View → Texturas** para activarlo o desactivarlo.
+From the main menu, open **TEXTURES** and select the pack’s **ZIP** from USB. While playing, use **View → Textures** to enable or disable it.
 
+## Credits
 
-## Créditos
-
-Gracias a los equipos de [Foxhollow](https://github.com/JackPriceBurns/foxhollow), [SFA-Decomp](https://github.com/zcanann/SFA-Decomp) y [Aurora](https://github.com/encounter/aurora), y a los proyectos de soporte UWP. Véanse los [créditos completos](CREDITS.md) y las [licencias de terceros](THIRD_PARTY_NOTICES.md).
+Thanks to the [Foxhollow](https://github.com/JackPriceBurns/foxhollow), [SFA-Decomp](https://github.com/zcanann/SFA-Decomp) and [Aurora](https://github.com/encounter/aurora) teams, and the UWP support projects. See the [full credits](CREDITS.md) and [third-party licenses](THIRD_PARTY_NOTICES.md).
