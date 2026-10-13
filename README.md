@@ -24,11 +24,8 @@ Discos admitidos: USA **GSAE01** y PAL **GSAP01**, revisiones 0 y 1; Japón **GS
 
 Pulsa **View** durante la partida para abrir la barra. Incluye ajustes de **720p/1080p**, **4:3/16:9**, idioma PAL y contador de FPS.
 
-Para instalar un pack, selecciona su **ZIP** desde **TEXTURAS** en el menú principal. Se guarda en el almacenamiento local y el juego y el audio se pausan durante la preparación. Puedes activarlo o desactivarlo desde la barra durante la partida.
+En el menú principal, abre **TEXTURAS** y selecciona el **ZIP** del pack desde la USB. Durante la partida, pulsa **View → Texturas** para activarlo o desactivarlo.
 
-## Guías
-
-[Instalación y uso](docs/USAGE.md) · [Packs de texturas](docs/TEXTURES.md) · [Compilación](docs/BUILDING.md)
 
 ## Créditos
 
